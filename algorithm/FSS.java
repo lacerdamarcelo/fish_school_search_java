@@ -18,8 +18,6 @@ public class FSS {
 	private double volStep;
 	private double minIndStep;
 	private double maxIndStep;
-	private double minVolStep;
-	private double maxVolStep;
 	private double wScale;
 	private int numDimensions;
 	private int iterations;
@@ -38,16 +36,14 @@ public class FSS {
 	private boolean maximize;
 	
 	
-	public FSS(int numberFishes, double minIndStep, double maxIndStep, double minVolStep,
-			double maxVolStep, Function function, int numDimensions, int iterations, double inputMin,
+	public FSS(int numberFishes, double minIndStep, double maxIndStep, Function function, 
+			int numDimensions, int iterations, double inputMin,
 			double inputMax, double minInitPos, double maxInitPos, double wScale,
 			boolean maximize) {
 		this.minIndStep = minIndStep;
 		this.maxIndStep = maxIndStep;
-		this.minVolStep = minVolStep;
-		this.maxVolStep = maxVolStep;
 		this.indStep = maxIndStep;
-		this.volStep = maxVolStep;
+		this.volStep = this.indStep * 2;
 		this.function = function;
 		this.randNum = new Random();
 		this.numDimensions = numDimensions;
@@ -126,7 +122,7 @@ public class FSS {
 	
 	private void updateVolIndSteps(){
 		this.indStep -= (double)(this.maxIndStep-this.minIndStep)/iterations;
-		this.volStep -= (double)(this.maxVolStep-this.minVolStep)/iterations;
+		this.volStep = this.indStep * 2;
 	}
 	
 	
