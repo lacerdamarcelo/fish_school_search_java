@@ -104,7 +104,11 @@ public class FSS {
 		this.updateBestSolutionFoundAndDiversityLevel();
 		this.currentStep++;
 		if(this.currentStep<this.iterations){
-			System.out.println(this.currentStep + " - " + this.bestSolutionFoundFitness);
+			if(this.maximize == false){
+				System.out.println(this.currentStep + "\t" + -this.bestSolutionFoundFitness + "\t" + this.diversityLevel);
+			}
+			else
+				System.out.println(this.currentStep + "\t" + this.bestSolutionFoundFitness + "\t" + this.diversityLevel);
 			return true;
 		}else{
 			for(int i=0;i<this.fishes.length;i++){
